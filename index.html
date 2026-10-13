@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>L-learning - Nền tảng Giáo dục Trực tuyến Cá nhân hóa</title>
+    <title>Smart School - L-learning Dashboard</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Lucide Icons CDN -->
@@ -13,432 +13,354 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap');
         body { font-family: 'Lexend', sans-serif; }
-        .perspective-1000 { perspective: 1000px; }
-        .transform-style-3d { transform-style: preserve-3d; }
-        .backface-hidden { backface-visibility: hidden; }
-        .rotate-y-180 { transform: rotateY(180deg); }
     </style>
 </head>
-<body class="bg-slate-100 text-slate-800 min-h-screen flex flex-col justify-between">
+<body class="bg-slate-50 text-slate-800 min-h-screen flex">
 
-    <!-- 1. MÀN HÌNH ĐĂNG NHẬP BẢO MẬT (LOGIN OVERLAY) -->
-    <div id="login-screen" class="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-4">
-        <div class="bg-white rounded-3xl shadow-2xl max-w-md w-full p-8 space-y-6 border border-slate-200">
-            <div class="text-center space-y-2">
-                <div class="inline-flex bg-indigo-600 text-white p-3 rounded-2xl shadow-lg mb-1">
-                    <i data-lucide="graduation-cap" class="w-8 h-8"></i>
+    <!-- SIDEBAR NAVIGATION -->
+    <aside class="w-64 bg-white border-r border-slate-200 hidden md:flex flex-col justify-between p-6 shrink-0 shadow-sm">
+        <div class="space-y-8">
+            <!-- Logo -->
+            <div class="flex items-center gap-3">
+                <div class="bg-blue-600 text-white p-2.5 rounded-2xl shadow-md">
+                    <i data-lucide="graduation-cap" class="w-6 h-6"></i>
                 </div>
-                <h1 class="text-2xl font-bold text-slate-900">Hệ Thống L-learning</h1>
-                <p class="text-xs text-slate-500">Đăng nhập tài khoản để truy cập hệ thống học tập cá nhân hóa</p>
+                <div>
+                    <h1 class="font-extrabold text-blue-600 tracking-wider text-base">SMART SCHOOL</h1>
+                    <p class="text-[10px] text-slate-400">L-learning Education</p>
+                </div>
             </div>
 
-            <div class="space-y-4">
-                <div class="space-y-1">
-                    <label class="text-xs font-bold text-slate-700">Tên đăng nhập / Email</label>
-                    <input type="text" value="nguyenvanan@thuyloi.edu.vn" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm bg-slate-50">
-                </div>
-
-                <div class="space-y-1">
-                    <label class="text-xs font-bold text-slate-700">Mật khẩu</label>
-                    <input type="password" value="********" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm bg-slate-50">
-                </div>
-
-                <div class="space-y-2 pt-2">
-                    <span class="text-xs font-semibold text-slate-500 block">Chọn vai trò truy cập demo:</span>
-                    <div class="grid grid-cols-2 gap-2">
-                        <button onclick="selectRole('student', 'Nguyễn Văn An - Học sinh')" id="login-btn-student" class="role-select-btn p-2.5 rounded-xl border border-indigo-600 bg-indigo-50 text-indigo-700 font-bold text-xs flex items-center gap-2">
-                            <i data-lucide="user" class="w-4 h-4"></i> Học Sinh
-                        </button>
-                        <button onclick="selectRole('teacher', 'Th.S Bùi Thị Giang - Giảng viên')" id="login-btn-teacher" class="role-select-btn p-2.5 rounded-xl border border-slate-200 text-slate-700 font-bold text-xs flex items-center gap-2">
-                            <i data-lucide="book-open" class="w-4 h-4"></i> Giáo Viên
-                        </button>
-                        <button onclick="selectRole('admin', 'Quản Trị Viên Hệ Thống')" id="login-btn-admin" class="role-select-btn p-2.5 rounded-xl border border-slate-200 text-slate-700 font-bold text-xs flex items-center gap-2">
-                            <i data-lucide="shield-check" class="w-4 h-4"></i> Quản Trị
-                        </button>
-                        <button onclick="selectRole('parent', 'Phụ Huynh Học Sinh')" id="login-btn-parent" class="role-select-btn p-2.5 rounded-xl border border-slate-200 text-slate-700 font-bold text-xs flex items-center gap-2">
-                            <i data-lucide="heart" class="w-4 h-4"></i> Phụ Huynh
-                        </button>
-                    </div>
-                </div>
-
-                <button onclick="handleLogin()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 rounded-xl shadow-lg transition text-sm">
-                    Đăng Nhập Vào Hệ Thống
+            <!-- Role Selector Sidebar -->
+            <nav class="space-y-1.5">
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-3 mb-2">Chọn Vai Trò Trải Nghiệm</p>
+                
+                <button onclick="switchRole('student')" id="nav-student" class="nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-2xl font-bold text-xs transition-all bg-blue-600 text-white shadow-md shadow-blue-600/20">
+                    <i data-lucide="user" class="w-4 h-4"></i> Học Sinh
                 </button>
-            </div>
+                <button onclick="switchRole('teacher')" id="nav-teacher" class="nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-2xl font-bold text-xs transition-all text-slate-600 hover:bg-slate-100">
+                    <i data-lucide="book-open" class="w-4 h-4"></i> Giáo Viên
+                </button>
+                <button onclick="switchRole('admin')" id="nav-admin" class="nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-2xl font-bold text-xs transition-all text-slate-600 hover:bg-slate-100">
+                    <i data-lucide="shield-check" class="w-4 h-4"></i> Quản Trị Viên
+                </button>
+                <button onclick="switchRole('parent')" id="nav-parent" class="nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-2xl font-bold text-xs transition-all text-slate-600 hover:bg-slate-100">
+                    <i data-lucide="heart" class="w-4 h-4"></i> Phụ Huynh
+                </button>
+                <button onclick="switchRole('revenue')" id="nav-revenue" class="nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-2xl font-bold text-xs transition-all text-slate-600 hover:bg-slate-100">
+                    <i data-lucide="dollar-sign" class="w-4 h-4 text-emerald-600"></i> Mô Hình Doanh Thu
+                </button>
+            </nav>
         </div>
-    </div>
 
-    <!-- 2. THANH TIÊU ĐỀ ĐÃ CÓ NÚT ĐĂNG XUẤT THỰC SỰ -->
-    <header id="main-header" class="bg-indigo-900 text-white shadow-lg sticky top-0 z-40 hidden">
-        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center gap-4">
-            <div class="flex items-center space-x-3">
-                <div class="bg-indigo-600 p-2 rounded-xl font-bold text-xl flex items-center gap-2">
-                    <i data-lucide="graduation-cap"></i>
-                    <span>L-learning</span>
-                </div>
-                <span id="user-display-badge" class="text-xs bg-indigo-800 text-indigo-200 px-3 py-1 rounded-full font-medium border border-indigo-700">Đang đăng nhập: Học sinh</span>
-            </div>
-
-            <!-- NÚT ĐĂNG XUẤT RÕ RÀNG -->
-            <button onclick="handleLogout()" class="bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold px-4 py-2 rounded-xl transition flex items-center gap-2 shadow-md">
-                <i data-lucide="log-out" class="w-4 h-4"></i> Đăng Xuất
+        <div class="space-y-2 pt-4 border-t border-slate-100">
+            <button onclick="openModal('Trợ giúp hệ thống', 'Liên hệ đội ngũ kỹ thuật Nhóm 5 - Lớp 66TMDT1 Đại học Thủy Lợi để được hỗ trợ.')" class="w-full flex items-center gap-3 px-4 py-2 rounded-xl text-xs font-semibold text-slate-500 hover:bg-slate-100">
+                <i data-lucide="help-circle" class="w-4 h-4"></i> Trợ Giúp
+            </button>
+            <button onclick="openModal('Cài đặt', 'Cài đặt giao diện, thông báo Zalo ZNS và bảo mật.')" class="w-full flex items-center gap-3 px-4 py-2 rounded-xl text-xs font-semibold text-slate-500 hover:bg-slate-100">
+                <i data-lucide="settings" class="w-4 h-4"></i> Cài Đặt
             </button>
         </div>
-    </header>
+    </aside>
 
-    <!-- 3. NỘI DUNG CHÍNH (HIỆN THEO VAI TRÒ) -->
-    <main id="main-content" class="flex-grow max-w-7xl w-full mx-auto p-4 md:p-6 hidden">
-
-        <!-- MÀN HÌNH HỌC SINH -->
-        <section id="role-student" class="role-view space-y-6 hidden">
-            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex justify-between items-center flex-wrap gap-4">
-                <div>
-                    <h1 class="text-2xl font-bold text-slate-800">Xin chào, Nguyễn Văn An 👋</h1>
-                    <p class="text-slate-500 text-sm">Lớp 12A1 • Trường THPT Thủy Lợi • Mã SV: 2454053791</p>
+    <!-- MAIN CONTENT CONTAINER -->
+    <div class="flex-grow flex flex-col min-w-0">
+        
+        <!-- TOP HEADER -->
+        <header class="bg-white border-b border-slate-200 px-6 py-4 flex justify-between items-center sticky top-0 z-30 shadow-sm">
+            <div class="flex items-center gap-4">
+                <span id="header-title" class="text-sm font-bold text-slate-800">Dashboard / Học Sinh</span>
+            </div>
+            
+            <div class="flex items-center gap-4">
+                <div class="relative bg-slate-100 p-2 rounded-xl cursor-pointer hover:bg-slate-200" onclick="openPremiumModal()">
+                    <span class="text-xs font-bold text-indigo-600 flex items-center gap-1">⭐ Nâng Cấp Premium</span>
                 </div>
-                <div class="flex items-center gap-3">
-                    <span class="bg-amber-100 text-amber-800 px-3 py-1.5 rounded-xl font-bold text-xs flex items-center gap-1 border border-amber-200">
-                        <i data-lucide="flame" class="w-4 h-4 fill-amber-500 text-amber-500"></i> Chuỗi 7 ngày học
-                    </span>
-                    <span class="bg-indigo-100 text-indigo-800 px-3 py-1.5 rounded-xl font-bold text-xs flex items-center gap-1 border border-indigo-200">
-                        <i data-lucide="award" class="w-4 h-4 text-indigo-600"></i> Gói Cá Nhân Hóa (Premium)
-                    </span>
+                <div class="flex items-center gap-2 pl-2 border-l border-slate-200">
+                    <div class="w-8 h-8 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center text-xs">A</div>
+                    <span id="user-name-display" class="text-xs font-bold text-slate-700 hidden sm:inline">Nguyễn Văn An</span>
                 </div>
             </div>
+        </header>
 
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                <!-- Đồ thị năng lực -->
-                <div class="lg:col-span-2 bg-white p-6 rounded-2xl shadow-sm border border-slate-200 space-y-4">
-                    <div class="flex justify-between items-center">
-                        <h2 class="font-bold text-lg text-slate-800 flex items-center gap-2">
-                            <i data-lucide="network" class="text-indigo-600"></i> Đồ Thị Năng Lực Cá Nhân Hóa
-                        </h2>
-                        <button onclick="openModal('Chi Tiết Đồ Thị Năng Lực', 'Đồ thị phân tích dựa trên 15 bài thi trắc nghiệm gần nhất. AI xác định điểm mạnh là Đạo hàm (85%), điểm yếu là Tích phân (30%).')" class="text-xs bg-indigo-50 text-indigo-700 px-2.5 py-1 rounded-lg font-bold hover:bg-indigo-100">Xem Chi Tiết AI Phân Tích</button>
+        <!-- DASHBOARD BODY -->
+        <main class="flex-grow p-6 space-y-6 max-w-7xl w-full mx-auto overflow-y-auto">
+
+            <!-- ================= 1. MÀN HÌNH HỌC SINH ================= -->
+            <section id="role-student" class="role-view space-y-6">
+                <div class="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-3xl p-8 text-white shadow-xl flex flex-wrap justify-between items-center gap-6">
+                    <div class="space-y-1">
+                        <span class="text-xs bg-white/20 px-3 py-1 rounded-full font-semibold cursor-pointer hover:bg-white/30" onclick="openPremiumModal()">⭐ Gói Cá Nhân Hóa (Premium) - Xem Quyền Lợi</span>
+                        <h2 class="text-3xl font-extrabold">HELLO, NGUYỄN VĂN AN</h2>
+                        <p class="text-xs text-blue-100">Lớp 12A1 • Trường THPT Thủy Lợi • Mã SV: 2454053791</p>
                     </div>
 
-                    <div class="h-64 relative bg-slate-50 rounded-xl p-4 border border-slate-100">
-                        <canvas id="studentKnowledgeChart"></canvas>
-                    </div>
-
-                    <div class="p-4 bg-amber-50 rounded-xl border border-amber-200 flex items-start gap-3">
-                        <i data-lucide="alert-triangle" class="w-5 h-5 text-amber-600 shrink-0 mt-0.5"></i>
-                        <div class="text-xs space-y-1">
-                            <span class="font-bold text-amber-900">Phát hiện Lỗ hổng Kiến thức (Knowledge Gap):</span>
-                            <p class="text-amber-800">Bạn làm sai 4/5 câu phần <span class="font-bold underline">Tích Phân Phân Lớp</span>. AI phát hiện nguyên nhân gốc rễ do chưa vững <span class="font-bold underline">Nguyên Hàm Cơ Bản</span>[cite: 1, 2].</p>
+                    <div class="flex items-center gap-4">
+                        <div class="bg-white/10 backdrop-blur-md px-5 py-3 rounded-2xl border border-white/20 text-center">
+                            <p class="text-2xl font-extrabold">8.8</p>
+                            <span class="text-[10px] text-blue-200">Điểm Trung Bình</span>
+                        </div>
+                        <div class="bg-white/10 backdrop-blur-md px-5 py-3 rounded-2xl border border-white/20 text-center">
+                            <p class="text-2xl font-extrabold">92%</p>
+                            <span class="text-[10px] text-blue-200">Độ Chuyên Cần</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Thẻ Flashcard SM-2 -->
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 space-y-4">
-                    <div class="flex justify-between items-center">
-                        <h2 class="font-bold text-lg text-slate-800 flex items-center gap-2">
-                            <i data-lucide="layers" class="text-indigo-600"></i> Ôn Tập Ngắt Quãng (SM-2)
-                        </h2>
-                        <span class="text-xs bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded font-semibold">3 thẻ cần ôn</span>
-                    </div>
-
-                    <div id="flashcard-container" class="perspective-1000 h-52 w-full cursor-pointer" onclick="flipCard()">
-                        <div id="flashcard" class="relative w-full h-full duration-500 transform-style-3d bg-indigo-900 text-white rounded-2xl p-6 flex flex-col justify-between shadow-md">
-                            <div class="absolute inset-0 backface-hidden p-6 flex flex-col justify-between bg-gradient-to-br from-indigo-900 to-indigo-800 rounded-2xl">
-                                <span class="text-xs text-indigo-300 font-semibold uppercase">Môn: Toán 12 • Thẻ #104</span>
-                                <div class="text-center my-auto">
-                                    <p class="text-sm font-medium text-indigo-200 mb-1">Công thức tính:</p>
-                                    <p class="text-lg font-bold text-white">Nguyên hàm của f(x) = xⁿ (n ≠ -1)</p>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <!-- Bài tập -->
+                    <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-200 space-y-4">
+                        <div class="flex justify-between items-center">
+                            <h3 class="font-bold text-sm text-slate-800 flex items-center gap-2">
+                                <i data-lucide="clipboard-list" class="text-blue-600"></i> Bài Tập & Hạn Nộp
+                            </h3>
+                        </div>
+                        <div class="space-y-3 text-xs">
+                            <div class="p-3 bg-amber-50 rounded-2xl border border-amber-200 flex justify-between items-center">
+                                <div>
+                                    <p class="font-bold text-amber-900">Bài tập Tích phân nâng cao</p>
+                                    <p class="text-[10px] text-amber-700">Hạn: Hôm nay, 23:59</p>
                                 </div>
-                                <span class="text-xs text-center text-indigo-400">💡 Bấm vào thẻ để xem đáp án</span>
-                            </div>
-                            <div class="absolute inset-0 backface-hidden rotate-y-180 p-6 flex flex-col justify-between bg-indigo-950 text-white rounded-2xl border-2 border-indigo-500">
-                                <span class="text-xs text-emerald-400 font-semibold uppercase">Đáp án chi tiết</span>
-                                <div class="text-center my-auto">
-                                    <p class="text-xl font-extrabold text-amber-300">∫ xⁿ dx = (xⁿ⁺¹ / n+1) + C</p>
-                                </div>
-                                <span class="text-xs text-center text-slate-400">Đánh giá độ nhớ bên dưới:</span>
+                                <button onclick="openModal('Nộp bài tập', 'Tải lên tệp bài làm của bạn.')" class="bg-blue-600 text-white px-3 py-1.5 rounded-xl font-bold shadow">Nộp Bài</button>
                             </div>
                         </div>
                     </div>
 
-                    <div class="grid grid-cols-3 gap-2 pt-2">
-                        <button onclick="rateCard('Dễ')" class="py-2 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 font-bold text-xs rounded-xl border border-emerald-200 transition">Dễ (3 ngày)</button>
-                        <button onclick="rateCard('Khó')" class="py-2 bg-amber-50 text-amber-700 hover:bg-amber-100 font-bold text-xs rounded-xl border border-amber-200 transition">Khó (1 ngày)</button>
-                        <button onclick="rateCard('Quên')" class="py-2 bg-rose-50 text-rose-700 hover:bg-rose-100 font-bold text-xs rounded-xl border border-rose-200 transition">Quên (Hôm nay)</button>
+                    <!-- Đồ thị năng lực -->
+                    <div class="lg:col-span-2 bg-white p-6 rounded-3xl shadow-sm border border-slate-200 space-y-4">
+                        <div class="flex justify-between items-center">
+                            <h3 class="font-bold text-sm text-slate-800 flex items-center gap-2">
+                                <i data-lucide="trending-up" class="text-blue-600"></i> Phân Tích Năng Lực & Lộ Trình Ôn Tập
+                            </h3>
+                            <span class="text-xs bg-blue-50 text-blue-700 px-2.5 py-1 rounded-lg font-semibold">AI Adaptive Learning</span>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
+                            <div class="h-44 relative bg-slate-50 rounded-2xl p-2 border border-slate-100">
+                                <canvas id="studentKnowledgeChart"></canvas>
+                            </div>
+                            <div class="space-y-3 text-xs">
+                                <div class="p-3 bg-blue-50/70 border border-blue-100 rounded-2xl space-y-1">
+                                    <p class="font-bold text-blue-900">Khuyến nghị từ AI:</p>
+                                    <p class="text-blue-700">Cần ôn tập bù phần <b>Tích phân từng phần</b> do tỷ lệ đúng đạt 30%.</p>
+                                </div>
+                                <button onclick="openModal('Bài Kiểm Tra Trắc Nghiệm Mẫu', 'Hệ thống đã khởi tạo đề thi trắc nghiệm ngẫu nhiên.')" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 rounded-xl shadow transition">
+                                    Làm Bài Kiểm Tra Trắc Nghiệm Mẫu 📝
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- KHU VỰC VIDEO CHẠY THỰC TẾ KHÔNG BỊ ĐEN -->
-            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 space-y-4">
-                <h2 class="font-bold text-lg text-slate-800 flex items-center gap-2">
-                    <i data-lucide="video" class="text-indigo-600"></i> Video Bài Giảng Tương Tác H5P Thực Tế
-                </h2>
+                <!-- Tích hợp Video thực tế & Flashcard -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-200 space-y-4">
+                        <h3 class="font-bold text-sm text-slate-800 flex items-center gap-2">
+                            <i data-lucide="layers" class="text-blue-600"></i> Thẻ Ghi Nhớ (Flashcard) SM-2
+                        </h3>
+                        <div class="h-44 bg-blue-900 text-white rounded-2xl p-6 flex flex-col justify-between cursor-pointer shadow-md" onclick="alert('Đáp án: Công thức tích phân từng phần: ∫u dv = u.v - ∫v du')">
+                            <span class="text-xs text-blue-300">Thẻ #12 • Chạm để lật đáp án</span>
+                            <p class="text-base font-bold text-center">Công thức tích phân từng phần là gì?</p>
+                            <span class="text-xs text-center text-blue-400">💡 Bấm vào đây xem đáp án chi tiết</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-200 space-y-4">
+                        <h3 class="font-bold text-sm text-slate-800 flex items-center gap-2">
+                            <i data-lucide="video" class="text-blue-600"></i> Tích Hợp Video Bài Giảng Tương Tác
+                        </h3>
+                        <div class="relative bg-slate-900 rounded-2xl overflow-hidden aspect-video shadow flex items-center justify-center">
+                            <video class="w-full h-full object-cover" controls>
+                                <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================= 2. MÀN HÌNH GIÁO VIÊN ================= -->
+            <section id="role-teacher" class="role-view space-y-6 hidden">
+                <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-200 flex justify-between items-center flex-wrap gap-4">
+                    <div>
+                        <h2 class="text-2xl font-bold text-slate-800">Quản Lý Giảng Dạy & Lớp Học 🏫</h2>
+                        <p class="text-slate-500 text-sm">Giảng viên: Th.S Bùi Thị Giang • Lớp học phần: 66TMDT1</p>
+                    </div>
+                    <button onclick="openModal('Tạo Bài Tập / Đề Kiểm Tra Mới', 'Giao diện soạn thảo đề thi trắc nghiệm, tự luận và cài đặt chống gian lận SEB.')" class="bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs px-4 py-2.5 rounded-xl transition flex items-center gap-2 shadow">
+                        <i data-lucide="plus-circle" class="w-4 h-4"></i> Tạo Bài Tập, Tạo Đề Kiểm Tra
+                    </button>
+                </div>
+
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="md:col-span-2 relative bg-slate-900 rounded-2xl overflow-hidden aspect-video shadow flex flex-col justify-between">
-                        <!-- Thẻ Video HTML5 Chạy Thực -->
-                        <video id="course-video" class="w-full h-full object-cover" controls poster="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800">
-                            <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4">
-                        </video>
-
-                        <div id="h5p-overlay" class="absolute inset-x-4 top-8 bg-white/95 backdrop-blur p-4 rounded-xl max-w-md mx-auto text-slate-800 shadow-2xl border border-indigo-200 z-30 space-y-3">
-                            <div class="flex justify-between items-center">
-                                <span class="text-xs font-bold text-indigo-600 uppercase">Câu hỏi dừng video H5P</span>
-                                <span class="text-xs text-slate-400">Thời điểm: 00:05</span>
+                    <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-200 space-y-4">
+                        <h3 class="font-bold text-sm text-slate-800 flex items-center gap-2">
+                            <i data-lucide="users" class="text-blue-600"></i> Quản Lý Lớp Học & Học Sinh Cần Hỗ Trợ ⚠️
+                        </h3>
+                        <div class="space-y-3 text-xs">
+                            <div class="p-3 bg-rose-50 border border-rose-200 rounded-2xl flex justify-between items-center">
+                                <div>
+                                    <p class="font-bold text-rose-900">Lê Quốc Hưng</p>
+                                    <p class="text-[10px] text-rose-700">Điểm TB môn: 4.2 (Cần phụ đạo)</p>
+                                </div>
+                                <button onclick="openModal('Gửi Thông Báo Phụ Đạo', 'Đã gửi lịch học phụ đạo cho học sinh Lê Quốc Hưng.')" class="bg-rose-600 text-white px-2.5 py-1 rounded-xl font-bold shadow">Hỗ Trợ</button>
                             </div>
-                            <p class="text-sm font-semibold">Tích phân cơ bản của hàm f(x) = 2x là gì?</p>
-                            <div class="space-y-1.5 text-xs">
-                                <label class="flex items-center gap-2 p-2 rounded-lg border hover:bg-slate-50 cursor-pointer">
-                                    <input type="radio" name="h5p" class="accent-indigo-600"> x² + C
-                                </label>
-                                <label class="flex items-center gap-2 p-2 rounded-lg border hover:bg-slate-50 cursor-pointer">
-                                    <input type="radio" name="h5p" class="accent-indigo-600"> 2x² + C
-                                </label>
-                            </div>
-                            <button onclick="submitH5P()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 rounded-lg text-xs transition">Gửi Đáp Án & Tiếp Tục Video</button>
                         </div>
                     </div>
 
-                    <div class="space-y-3">
-                        <h3 class="font-bold text-sm text-slate-700">Lộ Trình Tự Điều Chỉnh (Adaptive Path)[cite: 1, 2]</h3>
+                    <div class="md:col-span-2 bg-white p-6 rounded-3xl shadow-sm border border-slate-200 space-y-4">
+                        <h3 class="font-bold text-sm text-slate-800 flex items-center gap-2">
+                            <i data-lucide="file-check-2" class="text-blue-600"></i> Danh Sách Bài Chờ Chấm (Tự Luận OCR + AI)
+                        </h3>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-xs text-slate-600">
+                                <thead class="bg-slate-50 text-slate-700 font-bold uppercase">
+                                    <tr>
+                                        <th class="p-3 rounded-l-xl">Học Sinh</th>
+                                        <th class="p-3">Bài Kiểm Tra</th>
+                                        <th class="p-3">AI Gợi Ý Điểm</th>
+                                        <th class="p-3 rounded-r-xl text-right">Thao Tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-100">
+                                    <tr>
+                                        <td class="p-3 font-bold text-slate-800">Vy Văn Tiến</td>
+                                        <td class="p-3">Tự luận Kinh tế vĩ mô</td>
+                                        <td class="p-3 text-blue-600 font-bold">8.5 / 10</td>
+                                        <td class="p-3 text-right">
+                                            <button onclick="openModal('Chấm Bài Tự Luận', 'AI đã nhận diện chữ viết tay. Giảng viên xác nhận điểm.')" class="bg-blue-600 text-white px-3 py-1.5 rounded-xl font-bold shadow">Chấm Ngay</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================= 3. MÀN HÌNH QUẢN TRỊ VIÊN ================= -->
+            <section id="role-admin" class="role-view space-y-6 hidden">
+                <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-200 flex justify-between items-center flex-wrap gap-4">
+                    <div>
+                        <h2 class="text-2xl font-bold text-slate-800">Bảng Điều Khiển Quản Trị Hệ Thống ⚙️</h2>
+                        <p class="text-slate-500 text-sm">Trường Đại Học Thủy Lợi • Quản lý phân quyền và thiết lập</p>
+                    </div>
+                    <button onclick="openModal('Thiết Lập Hệ Thống', 'Cấu hình kết nối FPT Cloud, Zalo ZNS và bảo mật SEB.')" class="bg-slate-900 text-white text-xs font-bold px-4 py-2.5 rounded-xl shadow">
+                        Cấu Hình Hệ Thống
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-200 space-y-2">
+                        <span class="text-xs text-slate-500 font-medium">Tổng Người Dùng Mẫu</span>
+                        <p class="text-3xl font-extrabold text-slate-800">1,250</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-200 space-y-2">
+                        <span class="text-xs text-slate-500 font-medium">Lớp Học Trực Tuyến</span>
+                        <p class="text-3xl font-extrabold text-blue-600">48</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-200 space-y-2">
+                        <span class="text-xs text-slate-500 font-medium">Lượt Thi Trong Ngày</span>
+                        <p class="text-3xl font-extrabold text-amber-600">3,420</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================= 4. MÀN HÌNH PHỤ HUYNH ================= -->
+            <section id="role-parent" class="role-view space-y-6 hidden">
+                <div class="bg-gradient-to-r from-emerald-600 to-teal-600 rounded-3xl p-8 text-white shadow-xl flex flex-wrap justify-between items-center gap-6">
+                    <div class="space-y-1">
+                        <span class="text-xs bg-white/20 px-3 py-1 rounded-full font-semibold">L-learning Parent Portal</span>
+                        <h2 class="text-3xl font-extrabold">PHỤ HUYNH HỌC SINH</h2>
+                        <p class="text-xs text-emerald-100">Đang theo dõi học sinh: <b>Nguyễn Văn An</b> (Lớp 12A1)</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-200 space-y-4">
+                        <h3 class="font-bold text-sm text-slate-800 flex items-center gap-2">
+                            <i data-lucide="trending-up" class="text-emerald-600"></i> Theo Dõi Tiến Độ Học Tập
+                        </h3>
+                        <div class="p-4 bg-emerald-50 rounded-2xl border border-emerald-100 text-xs">
+                            <p class="text-lg font-extrabold text-emerald-900">100% Hoàn thành</p>
+                            <p class="text-slate-600 mt-1">Em An đã hoàn thành đủ các bài tập tuần này.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-200 space-y-4">
+                        <h3 class="font-bold text-sm text-slate-800 flex items-center gap-2">
+                            <i data-lucide="award" class="text-emerald-600"></i> Điểm Trung Bình & Bài Tập
+                        </h3>
                         <div class="space-y-2 text-xs">
-                            <div onclick="openModal('Bài 1: Nguyên Hàm', 'Đã hoàn thành 100%. Điểm bài tập: 9.5/10')" class="p-3 bg-indigo-50 border border-indigo-200 rounded-xl flex items-center justify-between cursor-pointer hover:bg-indigo-100">
-                                <div class="space-y-0.5">
-                                    <p class="font-bold text-indigo-900">1. Lý thuyết Nguyên Hàm</p>
-                                    <p class="text-indigo-600">Video 8 phút • Đã xong</p>
-                                </div>
-                                <i data-lucide="check-circle-2" class="text-emerald-600 w-5 h-5"></i>
-                            </div>
-                            <div onclick="openModal('Bài 2: Tích Phân Phân Lớp', 'Bài tập gồm 10 câu trắc nghiệm. Cần hoàn thành trước 23:00 hôm nay.')" class="p-3 bg-amber-50 border border-amber-200 rounded-xl flex items-center justify-between cursor-pointer hover:bg-amber-100">
-                                <div class="space-y-0.5">
-                                    <p class="font-bold text-amber-900">2. Luyện tập Tích Phân Phân Lớp</p>
-                                    <p class="text-amber-700">10 câu trắc nghiệm • Cần làm</p>
-                                </div>
-                                <i data-lucide="arrow-right-circle" class="text-amber-600 w-5 h-5"></i>
+                            <div class="p-3 bg-slate-50 rounded-2xl flex justify-between items-center">
+                                <span class="font-semibold text-slate-700">Điểm TB Toán</span>
+                                <span class="font-extrabold text-emerald-600 text-sm">8.5 / 10</span>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
 
-        <!-- MÀN HÌNH GIÁO VIÊN -->
-        <section id="role-teacher" class="role-view space-y-6 hidden">
-            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex justify-between items-center flex-wrap gap-4">
-                <div>
-                    <h1 class="text-2xl font-bold text-slate-800">Quản Lý Giảng Dạy & Thi Trực Tuyến 🏫</h1>
-                    <p class="text-slate-500 text-sm">Giảng viên: Th.S Bùi Thị Giang • Lớp học phần: 66TMDT1[cite: 1, 2]</p>
-                </div>
-                <button onclick="openModal('Tạo Đề Thi Mới', 'Tính năng cho phép khởi tạo đề thi trắc nghiệm/tự luận, cài đặt giám sát AI MediaPipe và mã khóa trình duyệt SEB[cite: 1, 2].')" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs px-4 py-2.5 rounded-xl transition flex items-center gap-2 shadow-sm">
-                    <i data-lucide="plus-circle" class="w-4 h-4"></i> Tạo Bài Tập / Đề Thi Mới
-                </button>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Giám sát AI -->
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 space-y-4">
-                    <div class="flex justify-between items-center">
-                        <h2 class="font-bold text-base text-slate-800 flex items-center gap-2">
-                            <i data-lucide="video-off" class="text-rose-600"></i> Giám Sát Thi Real-time (AI)
-                        </h2>
-                        <span class="text-xs bg-rose-100 text-rose-700 px-2 py-0.5 rounded-full font-bold animate-pulse">Đang thi: 42 SV</span>
-                    </div>
-
-                    <div class="space-y-3">
-                        <div class="p-3 bg-rose-50 border border-rose-200 rounded-xl flex items-center justify-between">
-                            <div class="space-y-1">
-                                <p class="text-xs font-bold text-rose-900">Lê Quốc Hưng[cite: 1, 2]</p>
-                                <p class="text-[11px] text-rose-700">Cảnh báo: Quay mặt khỏi màn hình > 10s</p>
-                            </div>
-                            <button onclick="openModal('Camera Giám Sát AI - SV Lê Quốc Hưng', 'Hình ảnh từ Webcam cho thấy thí sinh quay đầu sang phải trao đổi bài. AI đã tự động chụp ảnh vi phạm lúc 14:22:05.')" class="text-[10px] bg-rose-600 hover:bg-rose-700 text-white px-2.5 py-1 rounded font-bold">Xem Camera</button>
-                        </div>
-                        <div class="p-3 bg-amber-50 border border-amber-200 rounded-xl flex items-center justify-between">
-                            <div class="space-y-1">
-                                <p class="text-xs font-bold text-amber-900">Trần Thị Thảo[cite: 1, 2]</p>
-                                <p class="text-[11px] text-amber-700">Cảnh báo: Thử chuyển Tab trình duyệt</p>
-                            </div>
-                            <button onclick="openModal('Nhật Ký Vi Phạm - SV Trần Thị Thảo', 'Hệ thống Safe Exam Browser phát hiện thí sinh cố gắng thoát màn hình bài thi 2 lần[cite: 1, 2].')" class="text-[10px] bg-amber-600 hover:bg-amber-700 text-white px-2.5 py-1 rounded font-bold">Xem Chi Tiết</button>
+                    <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-200 space-y-4">
+                        <h3 class="font-bold text-sm text-slate-800 flex items-center gap-2">
+                            <i data-lucide="bell" class="text-emerald-600"></i> Kiến Thức Cần Ôn Tập
+                        </h3>
+                        <div class="p-4 bg-amber-50 rounded-2xl border border-amber-200 text-xs space-y-1">
+                            <p class="font-bold text-amber-900">Khuyến nghị AI:</p>
+                            <p class="text-amber-800">Cần ôn thêm phần Nguyên hàm cơ bản.</p>
                         </div>
                     </div>
                 </div>
+            </section>
 
-                <!-- Chấm bài OCR AI -->
-                <div class="md:col-span-2 bg-white p-6 rounded-2xl shadow-sm border border-slate-200 space-y-4">
-                    <div class="flex justify-between items-center">
-                        <h2 class="font-bold text-base text-slate-800 flex items-center gap-2">
-                            <i data-lucide="file-check-2" class="text-indigo-600"></i> Chấm Bài Tự Luận Viết Tay (OCR + AI)
-                        </h2>
-                        <span class="text-xs bg-indigo-50 text-indigo-700 px-2.5 py-1 rounded-lg font-semibold">Công nghệ Viettel AI OCR / Gemini[cite: 1, 2]</span>
+            <!-- ================= 5. MÔ HÌNH DOANH THU (BUSINESS MODEL) ================= -->
+            <section id="role-revenue" class="role-view space-y-6 hidden">
+                <div class="bg-gradient-to-r from-emerald-700 to-teal-800 rounded-3xl p-8 text-white shadow-xl space-y-2">
+                    <span class="text-xs bg-white/20 px-3 py-1 rounded-full font-semibold">Chiến Lược Thương Mại Điện Tử & EdTech</span>
+                    <h2 class="text-3xl font-extrabold">MÔ HÌNH DOANH THU (BUSINESS MODEL)</h2>
+                    <p class="text-xs text-emerald-100">Hệ thống L-learning áp dụng mô hình kinh doanh hỗn hợp (Hybrid Monetization Model) tối ưu hóa doanh thu từ trường học và cá nhân.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- 1. B2B SaaS -->
+                    <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-200 space-y-4">
+                        <div class="w-10 h-10 bg-emerald-100 text-emerald-700 rounded-2xl flex items-center justify-center font-bold">1</div>
+                        <h3 class="font-bold text-base text-slate-800">B2B SaaS (Trường học & Tổ chức)</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">Cung cấp gói bản quyền trọn gói cho các Trường THPT, Đại học và Trung tâm luyện thi:</p>
+                        <ul class="text-xs text-slate-600 space-y-1.5 list-disc pl-4">
+                            <li>Phí thuê bao theo học kỳ / năm học dựa trên quy mô tài khoản học sinh.</li>
+                            <li>Tích hợp hệ thống quản lý LMS, chống gian lận thi cử SEB và AI OCR.</li>
+                        </ul>
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 bg-slate-50 p-4 rounded-xl border border-slate-200">
-                        <div class="space-y-2">
-                            <span class="text-xs font-bold text-slate-600">Ảnh bài tự luận (SV: Vy Văn Tiến)[cite: 1, 2]:</span>
-                            <div onclick="openModal('Bài Tự Luận Viết Tay', 'Đã tải lên tệp bài làm dạng ảnh chụp tự luận môn Kinh tế vĩ mô[cite: 1, 2].')" class="bg-slate-200 rounded-lg h-40 flex flex-col items-center justify-center border border-slate-300 text-slate-500 p-2 text-center cursor-pointer hover:bg-slate-300">
-                                <i data-lucide="file-text" class="w-8 h-8 mb-1 text-slate-500"></i>
-                                <span class="text-xs font-medium">[Bấm để xem ảnh bài giải tự luận]</span>
-                            </div>
-                        </div>
-                        <div class="space-y-2 text-xs">
-                            <span class="text-xs font-bold text-slate-600">AI Nhận Diện & Đề Xuất Điểm:</span>
-                            <div class="bg-white p-3 rounded-lg border border-slate-200 space-y-1.5">
-                                <p class="text-slate-700 font-mono"><b>OCR:</b> "Lợi nhuận = Doanh thu - Chi phí = 150tr - 110tr = 40tr..."</p>
-                                <p class="text-emerald-700 font-bold">✓ Phương pháp giải đúng (80%)</p>
-                                <p class="text-rose-600 font-bold">✗ Sai đơn vị tính ở câu b (-1đ)</p>
-                                <hr class="my-1">
-                                <div class="flex justify-between items-center pt-1">
-                                    <span class="font-bold text-slate-800">Điểm AI đề xuất: <span class="text-indigo-600 text-sm">8.5 / 10</span></span>
-                                    <button onclick="openModal('Duyệt Điểm AI', 'Đã lưu điểm 8.5 vào hệ thống sổ điểm điện tử của lớp 66TMDT1[cite: 1, 2].')" class="bg-indigo-600 text-white font-bold px-3 py-1 rounded hover:bg-indigo-700 transition">Duyệt Điểm</button>
-                                </div>
-                            </div>
-                        </div>
+                    <!-- 2. B2C Subscription -->
+                    <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-200 space-y-4">
+                        <div class="w-10 h-10 bg-blue-100 text-blue-700 rounded-2xl flex items-center justify-center font-bold">2</div>
+                        <h3 class="font-bold text-base text-slate-800">B2C Subscription (Gói Premium cá nhân)</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">Thu phí thành viên hàng tháng/năm trực tiếp từ học sinh và phụ huynh:</p>
+                        <ul class="text-xs text-slate-600 space-y-1.5 list-disc pl-4">
+                            <li><b>Gói VIP Tháng (99.000đ/tháng):</b> Mở khóa toàn bộ kho video tương tác H5P và lộ trình AI cá nhân hóa.</li>
+                            <li><b>Gói VIP Năm (799.000đ/năm):</b> Tặng kèm tính năng Flashcard SM-2 không giới hạn.</li>
+                        </ul>
+                    </div>
+
+                    <!-- 3. Partnership & AI Services -->
+                    <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-200 space-y-4">
+                        <div class="w-10 h-10 bg-purple-100 text-purple-700 rounded-2xl flex items-center justify-center font-bold">3</div>
+                        <h3 class="font-bold text-base text-slate-800">Dịch Vụ Giá TrGia Tăng & Quảng Cáo</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">Nguồn thu phụ trợ từ hệ sinh thái giáo dục:</p>
+                        <ul class="text-xs text-slate-600 space-y-1.5 list-disc pl-4">
+                            <li>Hoa hồng liên kết (Affiliate) giới thiệu sách bổ trợ, khóa học kỹ năng mềm.</li>
+                            <li>Gói Zalo ZNS thông báo tự động cho phụ huynh (tính theo số lượng tin nhắn gửi đi).</li>
+                        </ul>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- MÀN HÌNH QUẢN TRỊ VIÊN -->
-        <section id="role-admin" class="role-view space-y-6 hidden">
-            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex justify-between items-center flex-wrap gap-4">
-                <div>
-                    <h1 class="text-2xl font-bold text-slate-800">Bảng Điều Khiển Quản Trị Hệ Thống ⚙️</h1>
-                    <p class="text-slate-500 text-sm">Trường Đại Học Thủy Lợi • Hệ thống L-learning VIP Tổ Chức[cite: 1, 2]</p>
-                </div>
-                <button onclick="openModal('Trạng Thái Máy Chủ', 'Máy chủ FPT Cloud Object Storage hoạt động ổn định. Băng thông sử dụng: 42%, Dung lượng lưu trữ bài thi: 128GB/1TB[cite: 1, 2].')" class="bg-emerald-100 text-emerald-800 text-xs font-bold px-3 py-2 rounded-xl flex items-center gap-1 hover:bg-emerald-200">
-                    <i data-lucide="server" class="w-4 h-4"></i> Server FPT Cloud: Hoạt động tốt[cite: 1, 2]
-                </button>
-            </div>
+        </main>
+    </div>
 
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div onclick="openModal('Quản Lý 1,250 Tài Khoản', 'Hệ thống ghi nhận 1,100 Học sinh, 120 Giảng viên và 30 Phụ huynh đang hoạt động[cite: 1, 2].')" class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-1 cursor-pointer hover:border-indigo-400">
-                    <span class="text-xs text-slate-500 font-medium">Tổng Tài Khoản</span>
-                    <p class="text-2xl font-extrabold text-slate-800">1,250</p>
-                </div>
-                <div onclick="openModal('Quản Lý Lớp Học', '48 lớp học phần thuộc Khoa CNTT, Kinh tế và Thương mại điện tử[cite: 1, 2].')" class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-1 cursor-pointer hover:border-indigo-400">
-                    <span class="text-xs text-slate-500 font-medium">Lớp Học Đang Mở</span>
-                    <p class="text-2xl font-extrabold text-indigo-600">48</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- MÀN HÌNH PHỤ HUYNH -->
-        <section id="role-parent" class="role-view space-y-6 hidden">
-            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex justify-between items-center flex-wrap gap-4">
-                <div>
-                    <h1 class="text-2xl font-bold text-slate-800">L-learning Parent - Theo Dõi Học Tập 👨‍👩‍👧</h1>
-                    <p class="text-slate-500 text-sm">Phụ huynh học sinh: <b>Nguyễn Văn An</b> (Lớp 12A1)[cite: 1, 2]</p>
-                </div>
-                <button onclick="openModal('Cấu Hình Zalo OA', 'Hệ thống đã kết nối thành công với Zalo Official Account của phụ huynh (SĐT: 098****123)[cite: 1, 2].')" class="flex items-center gap-2 bg-blue-50 text-blue-800 px-3 py-2 rounded-xl border border-blue-200 text-xs font-semibold hover:bg-blue-100">
-                    <i data-lucide="message-square" class="w-4 h-4 text-blue-600"></i> Zalo OA: Đã kết nối[cite: 1, 2]
-                </button>
-            </div>
-
-            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 space-y-4">
-                <h2 class="font-bold text-base text-slate-800 flex items-center gap-2">
-                    <i data-lucide="bell" class="text-blue-600"></i> Thông Báo Zalo OA Tự Động[cite: 1, 2]
-                </h2>
-                <div onclick="openModal('Chi Tiết Báo Cáo Tuần', 'Học sinh Nguyễn Văn An đạt điểm trung bình 8.8 tuần này. Cần chú ý luyện thêm bài tập Nguyên hàm theo khuyến nghị từ AI[cite: 1, 2].')" class="bg-blue-50 p-4 rounded-2xl border border-blue-100 space-y-2 cursor-pointer hover:bg-blue-100/80">
-                    <p class="font-bold text-xs text-slate-900">🔔 BÁO CÁO HỌC TẬP TUẦN NÀY</p>
-                    <p class="text-xs text-slate-700">Em <b>Nguyễn Văn An</b> đã hoàn thành 100% bài tập[cite: 1, 2]. AI kiến nghị luyện tập thêm 15 phút phần Nguyên Hàm[cite: 1, 2].</p>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- POPUP MODAL ĐỔI THÔNG TIN TƯƠNG TÁC KHI BẤM -->
+    <!-- MODAL POPUP THÔNG THƯỜNG -->
     <div id="info-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 hidden">
-        <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full p-6 space-y-4 border border-slate-200">
+        <div class="bg-white rounded-3xl shadow-2xl max-w-md w-full p-6 space-y-4 border border-slate-200">
             <div class="flex justify-between items-center border-b pb-3">
-                <h3 id="modal-title" class="font-bold text-slate-900 text-base">Thông Tin Chi Tiết</h3>
+                <h3 id="modal-title" class="font-bold text-slate-900 text-base">Thông Báo Hệ Thống</h3>
                 <button onclick="closeModal()" class="text-slate-400 hover:text-slate-600"><i data-lucide="x" class="w-5 h-5"></i></button>
             </div>
             <p id="modal-content" class="text-xs text-slate-600 leading-relaxed">Nội dung chi tiết...</p>
-            <button onclick="closeModal()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 rounded-xl text-xs">Đóng Cửa Sổ</button>
-        </div>
-    </div>
-
-    <!-- FOOTER -->
-    <footer class="bg-white border-t border-slate-200 py-4 text-center text-xs text-slate-500 mt-8">
-        <p>© 2026 L-learning System • Nhóm 5 - Lớp 66TMDT1 • Đại học Thủy Lợi[cite: 1, 2]</p>
-    </footer>
-
-    <!-- INTERACTIVE JAVASCRIPT LOGIC -->
-    <script>
-        let selectedRole = 'student';
-        let selectedName = 'Nguyễn Văn An - Học sinh';
-
-        function selectRole(role, name) {
-            selectedRole = role;
-            selectedName = name;
-            
-            document.querySelectorAll('.role-select-btn').forEach(btn => {
-                btn.classList.remove('border-indigo-600', 'bg-indigo-50', 'text-indigo-700');
-                btn.classList.add('border-slate-200', 'text-slate-700');
-            });
-            const activeBtn = document.getElementById('login-btn-' + role);
-            activeBtn.classList.add('border-indigo-600', 'bg-indigo-50', 'text-indigo-700');
-            activeBtn.classList.remove('border-slate-200', 'text-slate-700');
-        }
-
-        function handleLogin() {
-            document.getElementById('login-screen').classList.add('hidden');
-            document.getElementById('main-header').classList.remove('hidden');
-            document.getElementById('main-content').classList.remove('hidden');
-
-            document.getElementById('user-display-badge').innerText = 'Đang đăng nhập: ' + selectedName;
-
-            document.querySelectorAll('.role-view').forEach(el => el.classList.add('hidden'));
-            document.getElementById('role-' + selectedRole).classList.remove('hidden');
-
-            lucide.createIcons();
-            initCharts();
-        }
-
-        function handleLogout() {
-            document.getElementById('main-header').classList.add('hidden');
-            document.getElementById('main-content').classList.add('hidden');
-            document.getElementById('login-screen').classList.remove('hidden');
-        }
-
-        function openModal(title, content) {
-            document.getElementById('modal-title').innerText = title;
-            document.getElementById('modal-content').innerText = content;
-            document.getElementById('info-modal').classList.remove('hidden');
-        }
-
-        function closeModal() {
-            document.getElementById('info-modal').classList.add('hidden');
-        }
-
-        function flipCard() {
-            document.getElementById('flashcard').classList.toggle('rotate-y-180');
-        }
-
-        function rateCard(rating) {
-            alert('Đã lưu mức độ [' + rating + ']. Thuật toán SM-2 cập nhật lịch ôn tiếp theo!');
-            document.getElementById('flashcard').classList.remove('rotate-y-180');
-        }
-
-        function submitH5P() {
-            document.getElementById('h5p-overlay').classList.add('hidden');
-            alert('✓ Đúng rồi! Video tiếp tục phát...');
-            document.getElementById('course-video').play();
-        }
-
-        function initCharts() {
-            const ctxStudent = document.getElementById('studentKnowledgeChart').getContext('2d');
-            new Chart(ctxStudent, {
-                type: 'radar',
-                data: {
-                    labels: ['Đạo hàm', 'Nguyên hàm', 'Tích phân', 'Hình học', 'Số phức', 'Xác suất'],
-                    datasets: [{
-                        label: 'Thành thạo (%)',
-                        data: [85, 45, 30, 90, 75, 80],
-                        backgroundColor: 'rgba(99, 102, 241, 0.2)',
-                        borderColor: 'rgb(99, 102, 241)'
-                    }]
-                },
-                options: { responsive: true, maintainAspectRatio: false }
-            });
-        }
-    </script>
-</body>
-</html>
+            <button onclick="closeModal()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 rounded-2xl text-xs shadow">Đóng C
