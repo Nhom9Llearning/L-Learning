@@ -112,4 +112,432 @@
                                 <span class="text-xs text-indigo-300 font-semibold uppercase">Môn: Toán 12 • Thẻ #104</span>
                                 <div class="text-center my-auto">
                                     <p class="text-sm font-medium text-indigo-200 mb-1">Công thức tính:</p>
-                                    <p class="text-lg font-bold text-white">Nguyên hàm
+                                    <p class="text-lg font-bold text-white">Nguyên hàm của f(x) = xⁿ (n ≠ -1)</p>
+                                </div>
+                                <span class="text-xs text-center text-indigo-400">💡 Bấm vào thẻ để xem đáp án</span>
+                            </div>
+                            <!-- Back -->
+                            <div class="absolute inset-0 backface-hidden rotate-y-180 p-6 flex flex-col justify-between bg-indigo-950 text-white rounded-2xl border-2 border-indigo-500">
+                                <span class="text-xs text-emerald-400 font-semibold uppercase">Đáp án chi tiết</span>
+                                <div class="text-center my-auto">
+                                    <p class="text-xl font-extrabold text-amber-300">∫ xⁿ dx = (xⁿ⁺¹ / n+1) + C</p>
+                                </div>
+                                <span class="text-xs text-center text-slate-400">Đánh giá độ nhớ bên dưới:</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Evaluation buttons -->
+                    <div class="grid grid-cols-3 gap-2 pt-2">
+                        <button onclick="rateCard('easy')" class="py-2 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 font-bold text-xs rounded-xl border border-emerald-200 transition">Dễ (3 ngày)</button>
+                        <button onclick="rateCard('medium')" class="py-2 bg-amber-50 text-amber-700 hover:bg-amber-100 font-bold text-xs rounded-xl border border-amber-200 transition">Khó (1 ngày)</button>
+                        <button onclick="rateCard('hard')" class="py-2 bg-rose-50 text-rose-700 hover:bg-rose-100 font-bold text-xs rounded-xl border border-rose-200 transition">Quên (Hôm nay)</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bài học & Video Tương tác H5P -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 space-y-4">
+                <h2 class="font-bold text-lg text-slate-800 flex items-center gap-2">
+                    <i data-lucide="video" class="text-indigo-600"></i> Video Bài Giảng Tương Tác H5P
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="md:col-span-2 relative bg-slate-900 rounded-2xl overflow-hidden aspect-video flex flex-col justify-between p-4 shadow">
+                        <div class="flex justify-between items-center text-white z-10">
+                            <span class="text-xs bg-indigo-600 px-2 py-1 rounded font-semibold">Chương 3: Tích phân & Ứng dụng</span>
+                            <span class="text-xs bg-slate-800/80 px-2 py-1 rounded">Thời lượng: 12:45</span>
+                        </div>
+                        
+                        <!-- Simulated Interactive Question Overlay -->
+                        <div id="h5p-overlay" class="bg-white/95 backdrop-blur p-4 rounded-xl max-w-md mx-auto text-slate-800 shadow-xl border border-indigo-200 z-20 space-y-3">
+                            <div class="flex justify-between items-center">
+                                <span class="text-xs font-bold text-indigo-600 uppercase">Câu hỏi dừng video (At 04:12)</span>
+                                <span class="text-xs text-slate-400">1/1</span>
+                            </div>
+                            <p class="text-sm font-semibold">Điểm cực trị của hàm số y = x³ - 3x + 2 là gì?</p>
+                            <div class="space-y-1.5 text-xs">
+                                <label class="flex items-center gap-2 p-2 rounded-lg border hover:bg-slate-50 cursor-pointer">
+                                    <input type="radio" name="h5p" class="accent-indigo-600"> x = 1 và x = -1
+                                </label>
+                                <label class="flex items-center gap-2 p-2 rounded-lg border hover:bg-slate-50 cursor-pointer">
+                                    <input type="radio" name="h5p" class="accent-indigo-600"> x = 0
+                                </label>
+                            </div>
+                            <button onclick="submitH5P()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-1.5 rounded-lg text-xs transition">Gửi & Tiếp tục xem video</button>
+                        </div>
+
+                        <div class="flex items-center justify-between text-white z-10 pt-2 border-t border-slate-800">
+                            <button class="text-xs flex items-center gap-1 hover:text-indigo-400"><i data-lucide="play" class="w-4 h-4"></i> Phát</button>
+                            <div class="w-full mx-4 bg-slate-700 h-1.5 rounded-full relative">
+                                <div class="bg-indigo-500 h-1.5 rounded-full w-1/3"></div>
+                                <div class="absolute left-1/3 -top-1 w-3 h-3 bg-amber-400 rounded-full border border-white" title="Câu hỏi tương tác"></div>
+                            </div>
+                            <span class="text-xs">04:12 / 12:45</span>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3">
+                        <h3 class="font-bold text-sm text-slate-700">Lộ Trình Học Tập Đề Xuất (Adaptive Path)[cite: 1, 2]</h3>
+                        <div class="space-y-2 text-xs">
+                            <div class="p-3 bg-indigo-50 border border-indigo-200 rounded-xl flex items-center justify-between">
+                                <div class="space-y-0.5">
+                                    <p class="font-bold text-indigo-900">1. Lý thuyết Nguyên Hàm</p>
+                                    <p class="text-indigo-600">Video 8 phút • Đã hoàn thành</p>
+                                </div>
+                                <i data-lucide="check-circle-2" class="text-emerald-600 w-5 h-5"></i>
+                            </div>
+                            <div class="p-3 bg-amber-50 border border-amber-200 rounded-xl flex items-center justify-between">
+                                <div class="space-y-0.5">
+                                    <p class="font-bold text-amber-900">2. Luyện tập Tích Phân Phân Lớp</p>
+                                    <p class="text-amber-700">10 câu trắc nghiệm • Cần làm ngay</p>
+                                </div>
+                                <i data-lucide="arrow-right-circle" class="text-amber-600 w-5 h-5"></i>
+                            </div>
+                            <div class="p-3 bg-slate-50 border border-slate-200 rounded-xl flex items-center justify-between opacity-60">
+                                <div class="space-y-0.5">
+                                    <p class="font-bold text-slate-700">3. Thi thử Chương 3</p>
+                                    <p class="text-slate-500">Mở sau khi xong Bài 2</p>
+                                </div>
+                                <i data-lucide="lock" class="text-slate-400 w-4 h-4"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. MÀN HÌNH GIÁO VIÊN -->
+        <section id="role-teacher" class="role-view space-y-6 hidden">
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex justify-between items-center flex-wrap gap-4">
+                <div>
+                    <h1 class="text-2xl font-bold text-slate-800">Quản Lý Giảng Dạy & Thi Trực Tuyến 🏫</h1>
+                    <p class="text-slate-500 text-sm">Giảng viên: Th.S Bùi Thị Giang • Lớp học phần: 66TMDT1[cite: 1, 2]</p>
+                </div>
+                <button class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs px-4 py-2.5 rounded-xl transition flex items-center gap-2 shadow-sm">
+                    <i data-lucide="plus-circle" class="w-4 h-4"></i> Tạo Bài Tập / Đề Thi Mới
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Giám sát Thi Trực Tuyến AI (Real-time Proctoring) -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 space-y-4">
+                    <div class="flex justify-between items-center">
+                        <h2 class="font-bold text-base text-slate-800 flex items-center gap-2">
+                            <i data-lucide="video-off" class="text-rose-600"></i> Giám Sát Thi Real-time (AI)
+                        </h2>
+                        <span class="text-xs bg-rose-100 text-rose-700 px-2 py-0.5 rounded-full font-bold animate-pulse">Đang thi: 42 SV</span>
+                    </div>
+                    <p class="text-xs text-slate-500">Hệ thống tích hợp Google MediaPipe & SEB phát hiện bất thường[cite: 1, 2].</p>
+
+                    <div class="space-y-3">
+                        <div class="p-3 bg-rose-50 border border-rose-200 rounded-xl flex items-center justify-between">
+                            <div class="space-y-1">
+                                <p class="text-xs font-bold text-rose-900">Học sinh: Lê Quốc Hưng[cite: 1, 2]</p>
+                                <p class="text-[11px] text-rose-700">Cảnh báo: Quay mặt khỏi màn hình > 10s</p>
+                            </div>
+                            <span class="text-[10px] bg-rose-600 text-white px-2 py-1 rounded font-bold">Xem Camera</span>
+                        </div>
+                        <div class="p-3 bg-amber-50 border border-amber-200 rounded-xl flex items-center justify-between">
+                            <div class="space-y-1">
+                                <p class="text-xs font-bold text-amber-900">Học sinh: Trần Thị Thảo[cite: 1, 2]</p>
+                                <p class="text-[11px] text-amber-700">Cảnh báo: Thử chuyển Tab trình duyệt</p>
+                            </div>
+                            <span class="text-[10px] bg-amber-600 text-white px-2 py-1 rounded font-bold">Xem chi tiết</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chấm Bài Tự Luận OCR + AI (Handwritten OCR) -->
+                <div class="md:col-span-2 bg-white p-6 rounded-2xl shadow-sm border border-slate-200 space-y-4">
+                    <div class="flex justify-between items-center">
+                        <h2 class="font-bold text-base text-slate-800 flex items-center gap-2">
+                            <i data-lucide="file-check-2" class="text-indigo-600"></i> Chấm Bài Tự Luận Viết Tay (OCR + AI)
+                        </h2>
+                        <span class="text-xs bg-indigo-50 text-indigo-700 px-2.5 py-1 rounded-lg font-semibold">Công nghệ Viettel AI OCR / Gemini[cite: 1, 2]</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 bg-slate-50 p-4 rounded-xl border border-slate-200">
+                        <!-- Ảnh bài làm -->
+                        <div class="space-y-2">
+                            <span class="text-xs font-bold text-slate-600">Ảnh chụp bài tự luận (SV: Vy Văn Tiến)[cite: 1, 2]:</span>
+                            <div class="bg-slate-200 rounded-lg h-40 flex flex-col items-center justify-center border-2 border-dashed border-slate-300 text-slate-500 p-2 text-center">
+                                <i data-lucide="image" class="w-8 h-8 mb-1 text-slate-400"></i>
+                                <span class="text-xs font-medium">[Hình ảnh bài giải tự luận viết tay môn Kinh tế vĩ mô][cite: 1, 2]</span>
+                            </div>
+                        </div>
+                        <!-- Kết quả nhận diện & Gợi ý điểm -->
+                        <div class="space-y-2 text-xs">
+                            <span class="text-xs font-bold text-slate-600">AI Nhận Diện & Gợi Ý Chấm:</span>
+                            <div class="bg-white p-3 rounded-lg border border-slate-200 space-y-1.5">
+                                <p class="text-slate-700 font-mono"><b>OCR Văn bản:</b> "Lợi nhuận = Doanh thu - Chi phí = 150tr - 110tr = 40tr..."</p>
+                                <p class="text-emerald-700 font-bold">✓ Phương pháp giải đúng (80%)</p>
+                                <p class="text-rose-600 font-bold">✗ Sai sót đơn vị tính ở câu b (-1 điểm)</p>
+                                <hr class="my-1">
+                                <div class="flex justify-between items-center pt-1">
+                                    <span class="font-bold text-slate-800">Điểm AI đề xuất: <span class="text-indigo-600 text-sm">8.5 / 10</span></span>
+                                    <button class="bg-indigo-600 text-white font-bold px-3 py-1 rounded hover:bg-indigo-700 transition">Duyệt Điểm</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Phân Tích Lớp Học & Quản Lý Ngân Hàng Câu Hỏi -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 space-y-4">
+                <h2 class="font-bold text-lg text-slate-800 flex items-center gap-2">
+                    <i data-lucide="bar-chart-3" class="text-indigo-600"></i> Thống Kê Phổ Điểm & Ma Trận Kỹ Năng Lớp 66TMDT1[cite: 1, 2]
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="md:col-span-2 h-60">
+                        <canvas id="teacherClassChart"></canvas>
+                    </div>
+                    <div class="space-y-3 bg-slate-50 p-4 rounded-xl border border-slate-200 text-xs">
+                        <h3 class="font-bold text-slate-800 text-sm">Hành động gợi ý cho Giảng viên:</h3>
+                        <ul class="space-y-2 text-slate-600">
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+                                <span><b>65% sinh viên</b> đã nắm vững chương "Cung cầu thị trường"[cite: 1, 2].</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="x" class="w-4 h-4 text-rose-600 shrink-0"></i>
+                                <span><b>35% sinh viên</b> chưa hiểu rõ bài "Thất nghiệp & Lạm phát". Cần tổ chức 1 buổi phụ đạo[cite: 1, 2].</span>
+                            </li>
+                        </ul>
+                        <button class="w-full bg-slate-800 text-white font-bold py-2 rounded-xl hover:bg-slate-900 transition">Gửi Bài Tập Phụ Đạo Tự Động</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. MÀN HÌNH QUẢN TRỊ VIÊN -->
+        <section id="role-admin" class="role-view space-y-6 hidden">
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex justify-between items-center flex-wrap gap-4">
+                <div>
+                    <h1 class="text-2xl font-bold text-slate-800">Bảng Điều Khiển Quản Trị Hệ Thống ⚙️</h1>
+                    <p class="text-slate-500 text-sm">Trường Đại Học Thủy Lợi • Hệ thống L-learning VIP Tổ Chức[cite: 1, 2]</p>
+                </div>
+                <div class="flex gap-2">
+                    <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-3 py-2 rounded-xl flex items-center gap-1">
+                        <i data-lucide="server" class="w-4 h-4"></i> Hệ thống: Hoạt động tốt
+                    </span>
+                </div>
+            </div>
+
+            <!-- Stats Overview -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-1">
+                    <span class="text-xs text-slate-500 font-medium">Tổng Tài Khoản</span>
+                    <p class="text-2xl font-extrabold text-slate-800">1,250</p>
+                    <span class="text-[11px] text-emerald-600 font-semibold">↑ +12% tháng này</span>
+                </div>
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-1">
+                    <span class="text-xs text-slate-500 font-medium">Lớp Học Đang Mở</span>
+                    <p class="text-2xl font-extrabold text-indigo-600">48</p>
+                    <span class="text-[11px] text-slate-400">Thuộc 8 khoa học</span>
+                </div>
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-1">
+                    <span class="text-xs text-slate-500 font-medium">Lượt Nộp Bài / Ngày</span>
+                    <p class="text-2xl font-extrabold text-amber-600">3,420</p>
+                    <span class="text-[11px] text-amber-600 font-semibold">FPT Cloud Object Storage[cite: 1, 2]</span>
+                </div>
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-1">
+                    <span class="text-xs text-slate-500 font-medium">Gói Đã Đăng Ký</span>
+                    <p class="text-2xl font-extrabold text-emerald-600">VIP Tổ Chức</p>
+                    <span class="text-[11px] text-emerald-600 font-semibold">Hạn: 12/2026[cite: 1, 2]</span>
+                </div>
+            </div>
+
+            <!-- User Management & Permission Matrix -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 space-y-4">
+                <div class="flex justify-between items-center">
+                    <h2 class="font-bold text-lg text-slate-800 flex items-center gap-2">
+                        <i data-lucide="users" class="text-indigo-600"></i> Quản Lý Tài Khoản & Phân Quyền Giảng Viên[cite: 1, 2]
+                    </h2>
+                    <button class="bg-indigo-600 text-white font-bold text-xs px-3 py-2 rounded-xl hover:bg-indigo-700 transition flex items-center gap-1">
+                        <i data-lucide="user-plus" class="w-4 h-4"></i> Thêm Tài Khoản
+                    </button>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs text-slate-600">
+                        <thead class="bg-slate-100 text-slate-700 font-bold uppercase">
+                            <tr>
+                                <th class="p-3 rounded-l-lg">Họ & Tên</th>
+                                <th class="p-3">Vai Trò</th>
+                                <th class="p-3">Khoa / Lớp Phụ Trách</th>
+                                <th class="p-3">Quyền Hạn Đã Cấp</th>
+                                <th class="p-3 rounded-r-lg text-right">Thao Tác</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100">
+                            <tr>
+                                <td class="p-3 font-bold text-slate-800">Th.S Bùi Thị Giang[cite: 1, 2]</td>
+                                <td class="p-3"><span class="bg-indigo-100 text-indigo-800 px-2 py-0.5 rounded font-bold">Giáo viên</span></td>
+                                <td class="p-3">Thương mại điện tử (66TMDT1)[cite: 1, 2]</td>
+                                <td class="p-3">Tạo đề • Chấm bài • Quản lý lớp[cite: 1, 2]</td>
+                                <td class="p-3 text-right"><button class="text-indigo-600 font-bold hover:underline">Phân quyền</button></td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-bold text-slate-800">Phạm Thị Thanh Thủy[cite: 1, 2]</td>
+                                <td class="p-3"><span class="bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-bold">Học sinh</span></td>
+                                <td class="p-3">Lớp 66TMDT1[cite: 1, 2]</td>
+                                <td class="p-3">Làm bài • Ôn tập Flashcard[cite: 1, 2]</td>
+                                <td class="p-3 text-right"><button class="text-indigo-600 font-bold hover:underline">Chỉnh sửa</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. MÀN HÌNH PHỤ HUYNH -->
+        <section id="role-parent" class="role-view space-y-6 hidden">
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex justify-between items-center flex-wrap gap-4">
+                <div>
+                    <h1 class="text-2xl font-bold text-slate-800">L-learning Parent - Theo Dõi Học Tập 👨‍👩‍👧</h1>
+                    <p class="text-slate-500 text-sm">Phụ huynh học sinh: <b>Nguyễn Văn An</b> (Lớp 12A1)[cite: 1, 2]</p>
+                </div>
+                <div class="flex items-center gap-2 bg-blue-50 text-blue-800 px-3 py-2 rounded-xl border border-blue-200 text-xs font-semibold">
+                    <i data-lucide="message-square" class="w-4 h-4 text-blue-600"></i> Liên kết Zalo OA: Đã kết nối[cite: 1, 2]
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Tóm tắt kết quả con -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 space-y-4">
+                    <h2 class="font-bold text-base text-slate-800 flex items-center gap-2">
+                        <i data-lucide="trending-up" class="text-indigo-600"></i> Kết Quả Học Tập Gần Đây
+                    </h2>
+                    <div class="space-y-3">
+                        <div class="p-3 bg-slate-50 rounded-xl flex justify-between items-center">
+                            <div>
+                                <p class="text-xs font-bold text-slate-800">Thi giữa kỳ Toán Giải Tích</p>
+                                <p class="text-[11px] text-slate-500">Ngày: 12/10/2026</p>
+                            </div>
+                            <span class="text-lg font-extrabold text-indigo-600">8.5 / 10</span>
+                        </div>
+                        <div class="p-3 bg-slate-50 rounded-xl flex justify-between items-center">
+                            <div>
+                                <p class="text-xs font-bold text-slate-800">Kiểm tra Kinh tế chính trị[cite: 1, 2]</p>
+                                <p class="text-[11px] text-slate-500">Ngày: 08/10/2026</p>
+                            </div>
+                            <span class="text-lg font-extrabold text-emerald-600">9.0 / 10</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Báo cáo Zalo OA tự động -->
+                <div class="md:col-span-2 bg-white p-6 rounded-2xl shadow-sm border border-slate-200 space-y-4">
+                    <div class="flex justify-between items-center">
+                        <h2 class="font-bold text-base text-slate-800 flex items-center gap-2">
+                            <i data-lucide="bell" class="text-blue-600"></i> Thông Báo Tự Động Qua Zalo OA / ZNS
+                        </h2>
+                        <span class="text-xs text-slate-400">Cập nhật 10 phút trước</span>
+                    </div>
+
+                    <!-- Simulated Zalo Notification Message -->
+                    <div class="bg-blue-50/60 p-4 rounded-2xl border border-blue-100 max-w-lg space-y-2">
+                        <div class="flex items-center gap-2">
+                            <div class="w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-[10px]">Zalo</div>
+                            <span class="text-xs font-bold text-blue-900">L-learning Official Account</span>
+                        </div>
+                        <div class="bg-white p-3 rounded-xl border border-blue-200 text-xs space-y-1.5 shadow-sm text-slate-700">
+                            <p class="font-bold text-slate-900">🔔 BÁO CÁO HỌC TẬP TUẦN 6</p>
+                            <p>Kính gửi phụ huynh, em <b>Nguyễn Văn An</b> đã hoàn thành 100% bài tập tuần này[cite: 1, 2].</p>
+                            <p class="text-amber-700">⚠️ <b>Ghi chú từ AI:</b> Em cần luyện tập thêm 15 phút bài Nguyên Hàm để chuẩn bị cho bài thi sắp tới[cite: 1, 2].</p>
+                            <hr class="my-1">
+                            <a href="#" class="block text-center text-blue-600 font-bold hover:underline pt-0.5">Mở Báo Cáo Chi Tiết Đồ Thị Năng Lực →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-white border-t border-slate-200 py-4 text-center text-xs text-slate-500 mt-8">
+        <p>© 2026 L-learning System • Nhóm 5 - Lớp 66TMDT1 • Trường Đại học Thủy Lợi[cite: 1, 2]</p>
+        <p class="text-[11px] text-slate-400 mt-1">Giảng viên hướng dẫn: Th.S Bùi Thị Giang[cite: 1, 2]</p>
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT LOGIC -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Role Switching Logic
+        function switchRole(role) {
+            document.querySelectorAll('.role-view').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.role-btn').forEach(btn => {
+                btn.classList.remove('bg-indigo-600', 'text-white', 'shadow');
+                btn.classList.add('text-indigo-300');
+            });
+
+            document.getElementById('role-' + role).classList.remove('hidden');
+            const activeBtn = document.getElementById('btn-' + role);
+            activeBtn.classList.add('bg-indigo-600', 'text-white', 'shadow');
+            activeBtn.classList.remove('text-indigo-300');
+        }
+
+        // Flashcard Flip Logic
+        function flipCard() {
+            document.getElementById('flashcard').classList.toggle('rotate-y-180');
+        }
+
+        function rateCard(rating) {
+            alert('Đã ghi nhận mức độ ghi nhớ [' + rating.toUpperCase() + ']. Thuật toán SM-2 đã cập nhật lịch ôn tập tiếp theo![cite: 1, 2]');
+            document.getElementById('flashcard').classList.remove('rotate-y-180');
+        }
+
+        function submitH5P() {
+            document.getElementById('h5p-overlay').classList.add('hidden');
+            alert('✓ Bạn đã trả lời chính xác! Video tiếp tục phát...');
+        }
+
+        // Initialize Chart.js Graphs
+        window.addEventListener('DOMContentLoaded', () => {
+            // Student Knowledge Radar Chart
+            const ctxStudent = document.getElementById('studentKnowledgeChart').getContext('2d');
+            new Chart(ctxStudent, {
+                type: 'radar',
+                data: {
+                    labels: ['Đạo hàm', 'Nguyên hàm', 'Tích phân', 'Hình học không gian', 'Số phức', 'Xác suất'],
+                    datasets: [{
+                        label: 'Mức độ thành thạo (%)',
+                        data: [85, 45, 30, 90, 75, 80],
+                        backgroundColor: 'rgba(99, 102, 241, 0.2)',
+                        borderColor: 'rgb(99, 102, 241)',
+                        pointBackgroundColor: 'rgb(99, 102, 241)',
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: { r: { min: 0, max: 100 } }
+                }
+            });
+
+            // Teacher Class Bar Chart
+            const ctxTeacher = document.getElementById('teacherClassChart').getContext('2d');
+            new Chart(ctxTeacher, {
+                type: 'bar',
+                data: {
+                    labels: ['Cung cầu', 'Thất nghiệp', 'Lạm phát', 'Tăng trưởng', 'Tài khóa'],
+                    datasets: [{
+                        label: 'Tỷ lệ hiểu bài của lớp (%)',
+                        data: [88, 42, 55, 78, 62],
+                        backgroundColor: ['#10b981', '#f43f5e', '#f59e0b', '#10b981', '#6366f1']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: { y: { min: 0, max: 100 } }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
