@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-learning - Nền tảng Giáo dục Trực tuyến Cá nhân hóa</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Lexend', sans-serif; }
+        .perspective-1000 { perspective: 1000px; }
+        .transform-style-3d { transform-style: preserve-3d; }
+        .backface-hidden { backface-visibility: hidden; }
+        .rotate-y-180 { transform: rotateY(180deg); }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
+
+    <!-- TOP NAVIGATION BAR -->
+    <header class="bg-indigo-900 text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap justify-between items-center gap-4">
+            <div class="flex items-center space-x-3">
+                <div class="bg-indigo-600 p-2 rounded-xl font-bold text-xl flex items-center gap-2">
+                    <i data-lucide="graduation-cap"></i>
+                    <span>L-learning</span>
+                </div>
+                <span class="text-xs bg-indigo-800 text-indigo-200 px-2 py-1 rounded-full font-semibold border border-indigo-700">EdTech Demo v1.0</span>
+            </div>
+
+            <!-- Role Switcher -->
+            <div class="flex items-center space-x-1 bg-indigo-950 p-1.5 rounded-xl border border-indigo-800">
+                <span class="text-xs font-semibold px-2 text-indigo-300 hidden sm:inline">Chuyển Vai Trò:</span>
+                <button onclick="switchRole('student')" id="btn-student" class="role-btn text-xs font-semibold px-3 py-1.5 rounded-lg transition-all flex items-center gap-1.5 bg-indigo-600 text-white shadow">
+                    <i data-lucide="user" class="w-3.5 h-3.5"></i> Học Sinh
+                </button>
+                <button onclick="switchRole('teacher')" id="btn-teacher" class="role-btn text-xs font-semibold px-3 py-1.5 rounded-lg text-indigo-300 hover:text-white transition-all flex items-center gap-1.5">
+                    <i data-lucide="book-open" class="w-3.5 h-3.5"></i> Giáo Viên
+                </button>
+                <button onclick="switchRole('admin')" id="btn-admin" class="role-btn text-xs font-semibold px-3 py-1.5 rounded-lg text-indigo-300 hover:text-white transition-all flex items-center gap-1.5">
+                    <i data-lucide="shield-check" class="w-3.5 h-3.5"></i> Quản Trị Viên
+                </button>
+                <button onclick="switchRole('parent')" id="btn-parent" class="role-btn text-xs font-semibold px-3 py-1.5 rounded-lg text-indigo-300 hover:text-white transition-all flex items-center gap-1.5">
+                    <i data-lucide="heart" class="w-3.5 h-3.5"></i> Phụ Huynh
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="flex-grow max-w-7xl w-full mx-auto p-4 md:p-6">
+
+        <!-- 1. MÀN HÌNH HỌC SINH -->
+        <section id="role-student" class="role-view space-y-6">
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex justify-between items-center flex-wrap gap-4">
+                <div>
+                    <h1 class="text-2xl font-bold text-slate-800">Xin chào, Nguyễn Văn An 👋</h1>
+                    <p class="text-slate-500 text-sm">Lớp 12A1 • Trường THPT Thủy Lợi • Mã SV: 2454053791</p>
+                </div>
+                <div class="flex items-center gap-3">
+                    <span class="bg-amber-100 text-amber-800 px-3 py-1.5 rounded-xl font-bold text-xs flex items-center gap-1 border border-amber-200">
+                        <i data-lucide="flame" class="w-4 h-4 fill-amber-500 text-amber-500"></i> Chuỗi 7 ngày học
+                    </span>
+                    <span class="bg-indigo-100 text-indigo-800 px-3 py-1.5 rounded-xl font-bold text-xs flex items-center gap-1 border border-indigo-200">
+                        <i data-lucide="award" class="w-4 h-4 text-indigo-600"></i> Gói Cá Nhân Hóa (Premium)
+                    </span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Đồ thị năng lực & Lỗ hổng kiến thức -->
+                <div class="lg:col-span-2 bg-white p-6 rounded-2xl shadow-sm border border-slate-200 space-y-4">
+                    <div class="flex justify-between items-center">
+                        <h2 class="font-bold text-lg text-slate-800 flex items-center gap-2">
+                            <i data-lucide="network" class="text-indigo-600"></i> Đồ Thị Năng Lực Cá Nhân Hóa
+                        </h2>
+                        <span class="text-xs bg-indigo-50 text-indigo-700 px-2.5 py-1 rounded-lg font-medium">Môn: Toán Giải Tích 12</span>
+                    </div>
+                    <p class="text-xs text-slate-500">Hệ thống phân tích các bài kiểm tra gần nhất để xác định lỗ hổng kiến thức nền tảng[cite: 1, 2].</p>
+
+                    <div class="h-64 relative bg-slate-50 rounded-xl p-4 border border-slate-100">
+                        <canvas id="studentKnowledgeChart"></canvas>
+                    </div>
+
+                    <div class="p-4 bg-amber-50 rounded-xl border border-amber-200 flex items-start gap-3">
+                        <i data-lucide="alert-triangle" class="w-5 h-5 text-amber-600 shrink-0 mt-0.5"></i>
+                        <div class="text-xs space-y-1">
+                            <span class="font-bold text-amber-900">Phát hiện Lỗ hổng Kiến thức (Knowledge Gap):</span>
+                            <p class="text-amber-800">Bạn làm sai 4/5 câu hỏi phần <span class="font-bold underline">Tích Phân Phân Lớp</span>. Hệ thống phát hiện nguyên nhân gốc rễ là do chưa vững kiến thức <span class="font-bold underline">Nguyên Hàm Cơ Bản</span>[cite: 1, 2].</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Thẻ ghi nhớ SM-2 Flashcard -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 space-y-4">
+                    <div class="flex justify-between items-center">
+                        <h2 class="font-bold text-lg text-slate-800 flex items-center gap-2">
+                            <i data-lucide="layers" class="text-indigo-600"></i> Ôn Tập Ngắt Quãng (SM-2)
+                        </h2>
+                        <span class="text-xs bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded font-semibold">3 thẻ cần ôn</span>
+                    </div>
+
+                    <!-- Flashcard Interactive Widget -->
+                    <div id="flashcard-container" class="perspective-1000 h-52 w-full cursor-pointer" onclick="flipCard()">
+                        <div id="flashcard" class="relative w-full h-full duration-500 transform-style-3d bg-indigo-900 text-white rounded-2xl p-6 flex flex-col justify-between shadow-md">
+                            <!-- Front -->
+                            <div class="absolute inset-0 backface-hidden p-6 flex flex-col justify-between bg-gradient-to-br from-indigo-900 to-indigo-800 rounded-2xl">
+                                <span class="text-xs text-indigo-300 font-semibold uppercase">Môn: Toán 12 • Thẻ #104</span>
+                                <div class="text-center my-auto">
+                                    <p class="text-sm font-medium text-indigo-200 mb-1">Công thức tính:</p>
+                                    <p class="text-lg font-bold text-white">Nguyên hàm
